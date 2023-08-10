@@ -1,6 +1,6 @@
-import {getDiceRollArray, getDicePlaceholderHtml} from './utils.js'
+import { getDiceRollArray, getDicePlaceholderHtml } from "./utils.js";
 /*
-Challenge
+Challenge.
 1. Add a new property called currentDiceScore to each character's 
  data and initialise it to an empty array.
 2. Rewrite the getDiceHtml method so it updates currentDiceScore 
@@ -8,20 +8,24 @@ Challenge
 */
 
 function Character(data) {
-    Object.assign(this, data)
-    
-    this.diceArray = getDicePlaceholderHtml(this.diceCount)
-    
-    this.getDiceHtml = function(diceCount) {
-        return getDiceRollArray(diceCount).map(function(num){ 
-            return  `<div class="dice">${num}</div>`
-        }).join('')
-    } 
-    
-    this.getCharacterHtml = function () {
-        const { elementId, name, avatar, health, diceCount } = this;      
-        
-           return `
+  Object.assign(this, data);
+
+  // @ts-ignore
+  this.diceArray = getDicePlaceholderHtml(this.diceCount);
+
+  this.getDiceHtml = function (diceCount) {
+    return getDiceRollArray(diceCount)
+      .map(function (num) {
+        return `<div class="dice">${num}</div>`;
+      })
+      .join("");
+  };
+
+  this.getCharacterHtml = function () {
+    // @ts-ignore
+    const { elementId, name, avatar, health, diceCount } = this;
+
+    return `
             <div class="character-card">
                 <h4 class="name"> ${name} </h4>
                 <img class="avatar" src="${avatar}" />
@@ -29,8 +33,8 @@ function Character(data) {
                 <div class="dice-container">
                     ${this.diceArray}
                 </div>
-            </div>`
-    }  
+            </div>`;
+  };
 }
 
-export default Character
+export default Character;
